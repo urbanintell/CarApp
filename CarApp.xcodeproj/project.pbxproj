@@ -56,15 +56,47 @@
 		01B48A2D1F91B73100E200F7 /* CarApp */ = {
 			isa = PBXGroup;
 			children = (
+				01B48A461F91B76000E200F7 /* Storyboards */,
+				01B48A451F91B75700E200F7 /* Controllers */,
+				01B48A441F91B74D00E200F7 /* Views */,
+				01B48A431F91B73D00E200F7 /* Models */,
 				01B48A2E1F91B73100E200F7 /* AppDelegate.swift */,
-				01B48A301F91B73100E200F7 /* ViewController.swift */,
-				01B48A321F91B73100E200F7 /* Main.storyboard */,
 				01B48A381F91B73100E200F7 /* Assets.xcassets */,
-				01B48A3A1F91B73100E200F7 /* LaunchScreen.storyboard */,
 				01B48A3D1F91B73100E200F7 /* Info.plist */,
 				01B48A351F91B73100E200F7 /* CarApp.xcdatamodeld */,
 			);
 			path = CarApp;
+			sourceTree = "<group>";
+		};
+		01B48A431F91B73D00E200F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		01B48A441F91B74D00E200F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		01B48A451F91B75700E200F7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01B48A301F91B73100E200F7 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		01B48A461F91B76000E200F7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				01B48A3A1F91B73100E200F7 /* LaunchScreen.storyboard */,
+				01B48A321F91B73100E200F7 /* Main.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

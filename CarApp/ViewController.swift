@@ -5,7 +5,6 @@
 //  Created by Lusenii on 10/13/17.
 //  Copyright © 2017 HackGT. All rights reserved.
 //
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -20,6 +19,4 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
-
