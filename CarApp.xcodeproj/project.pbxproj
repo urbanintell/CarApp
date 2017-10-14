@@ -19,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CarRecognition.mlmodel; sourceTree = "<group>"; };
-		01534F551F926D8100B21FF8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = "../../../../../Downloads/CoreML-in-ARKit-master 2/CoreML in ARKit/art.scnassets"; sourceTree = "<group>"; };
 		14E4F9A083418F46CEE6EF25 /* Pods_CarApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B8E2D1F92509D00C45AF7 /* CarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B8E301F92509D00C45AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +65,6 @@
 		495B8E2F1F92509D00C45AF7 /* CarApp */ = {
 			isa = PBXGroup;
 			children = (
-				01534F551F926D8100B21FF8 /* art.scnassets */,
 				01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */,
 				495B8E301F92509D00C45AF7 /* AppDelegate.swift */,
 				495B8E321F92509D00C45AF7 /* art.scnassets */,
