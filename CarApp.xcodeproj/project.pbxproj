@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01534F581F926EC500B21FF8 /* CarRecognition.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */; };
 		1E8D542E2659BCB7096CAFFA /* Pods_CarApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E4F9A083418F46CEE6EF25 /* Pods_CarApp.framework */; };
 		495B8E311F92509D00C45AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B8E301F92509D00C45AF7 /* AppDelegate.swift */; };
 		495B8E331F92509D00C45AF7 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 495B8E321F92509D00C45AF7 /* art.scnassets */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CarRecognition.mlmodel; sourceTree = "<group>"; };
+		01534F551F926D8100B21FF8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = "../../../../../Downloads/CoreML-in-ARKit-master 2/CoreML in ARKit/art.scnassets"; sourceTree = "<group>"; };
 		14E4F9A083418F46CEE6EF25 /* Pods_CarApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B8E2D1F92509D00C45AF7 /* CarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B8E301F92509D00C45AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 		495B8E2F1F92509D00C45AF7 /* CarApp */ = {
 			isa = PBXGroup;
 			children = (
+				01534F551F926D8100B21FF8 /* art.scnassets */,
+				01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */,
 				495B8E301F92509D00C45AF7 /* AppDelegate.swift */,
 				495B8E321F92509D00C45AF7 /* art.scnassets */,
 				495B8E341F92509D00C45AF7 /* HomeViewController.swift */,
@@ -169,13 +174,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CarApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8CE9AD378DFC238D20CF111F /* [CP] Copy Pods Resources */ = {
@@ -199,9 +207,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CarApp/Pods-CarApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ARCL/ARCL.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARCL.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -217,6 +230,7 @@
 			files = (
 				495B8E351F92509D00C45AF7 /* HomeViewController.swift in Sources */,
 				495B8E311F92509D00C45AF7 /* AppDelegate.swift in Sources */,
+				01534F581F926EC500B21FF8 /* CarRecognition.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3KBTPPDBQ4;
+				DEVELOPMENT_TEAM = 4UY97DU8LP;
 				INFOPLIST_FILE = CarApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inbuild.CarApp;
@@ -371,7 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3KBTPPDBQ4;
+				DEVELOPMENT_TEAM = 4UY97DU8LP;
 				INFOPLIST_FILE = CarApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inbuild.CarApp;
