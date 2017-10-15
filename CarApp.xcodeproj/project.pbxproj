@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01534F581F926EC500B21FF8 /* CarRecognition.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */; };
+		01B28BDF1F92EE9400B66B77 /* AlamoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28BDE1F92EE9400B66B77 /* AlamoreAPI.swift */; };
+		01F7FB381F92B8FD006A6D94 /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7FB371F92B8FC006A6D94 /* CarDetailViewController.swift */; };
 		1E8D542E2659BCB7096CAFFA /* Pods_CarApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E4F9A083418F46CEE6EF25 /* Pods_CarApp.framework */; };
 		495B8E311F92509D00C45AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B8E301F92509D00C45AF7 /* AppDelegate.swift */; };
 		495B8E331F92509D00C45AF7 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 495B8E321F92509D00C45AF7 /* art.scnassets */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		01534F541F926D8000B21FF8 /* CarRecognition.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CarRecognition.mlmodel; sourceTree = "<group>"; };
+		01B28BDE1F92EE9400B66B77 /* AlamoreAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoreAPI.swift; sourceTree = "<group>"; };
+		01F7FB371F92B8FC006A6D94 /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		14E4F9A083418F46CEE6EF25 /* Pods_CarApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B8E2D1F92509D00C45AF7 /* CarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495B8E301F92509D00C45AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 				495B8E391F92509D00C45AF7 /* Assets.xcassets */,
 				495B8E3B1F92509D00C45AF7 /* LaunchScreen.storyboard */,
 				495B8E3E1F92509D00C45AF7 /* Info.plist */,
+				01F7FB371F92B8FC006A6D94 /* CarDetailViewController.swift */,
+				01B28BDE1F92EE9400B66B77 /* AlamoreAPI.swift */,
 			);
 			path = CarApp;
 			sourceTree = "<group>";
@@ -207,12 +213,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CarApp/Pods-CarApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ARCL/ARCL.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARCL.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -226,6 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F7FB381F92B8FD006A6D94 /* CarDetailViewController.swift in Sources */,
+				01B28BDF1F92EE9400B66B77 /* AlamoreAPI.swift in Sources */,
 				495B8E351F92509D00C45AF7 /* HomeViewController.swift in Sources */,
 				495B8E311F92509D00C45AF7 /* AppDelegate.swift in Sources */,
 				01534F581F926EC500B21FF8 /* CarRecognition.mlmodel in Sources */,

@@ -5,16 +5,17 @@
 //  Created by Marc Brown on 10/13/17.
 //  Copyright © 2017 HackGT. All rights reserved.
 //
-
 import UIKit
 import SceneKit
 import ARKit
 import Vision
 import MapKit
 
-
 class HomeViewController: UIViewController, ARSCNViewDelegate {
 
+    @IBOutlet weak var learn_more_button: UIButton!
+    
+    
     // SCENE
     @IBOutlet var sceneView: ARSCNView!
     let bubbleDepth : Float = 0.01 // the 'depth' of 3D text
@@ -23,16 +24,38 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
     // COREML
     var visionRequests = [VNRequest]()
     let dispatchQueueML = DispatchQueue(label: "com.hw.dispatchqueueml") // A Serial Queue
+    var carsScene = [String]()
+    
     @IBOutlet weak var debugTextView: UITextView!
 
+    
+    @IBAction func viewCarDetails(_ sender: UIButton) {
+//        self.performSegue(withIdentifier: "detailCarView", sender: nil)
+      
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(self.latestPrediction)
+        if segue.identifier == "detailCarView"{
+            if let destinationViewController = segue.destination as? CarDetailViewController {
+                destinationViewController.carName = self.latestPrediction
+            }
+        }
+        
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        learn_more_button.isHidden = true
+        learn_more_button.layer.cornerRadius = 0.5 * learn_more_button.bounds.size.width
+        learn_more_button.clipsToBounds = true
         
         // Set the view's delegate
         sceneView.delegate = self
-
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
 
         // Create a new scene
         let scene = SCNScene()
@@ -46,8 +69,7 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
         //////////////////////////////////////////////////
         // Tap Gesture Recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gestureRecognize:)))
-        view.addGestureRecognizer(tapGesture)
-
+        sceneView.addGestureRecognizer(tapGesture)
  
 //         Set up Vision Model
                 guard let selectedModel = try? VNCoreMLModel(for: CarRecognition().model) else { // (Optional) This can be replaced with other models on https://developer.apple.com/machine-learning/
@@ -82,10 +104,7 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
+  
 
     // MARK: - ARSCNViewDelegate
 
@@ -95,13 +114,8 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    // MARK: - Status Bar: Hide
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
 
     // MARK: - Interaction
-
     @objc func handleTap(gestureRecognize: UITapGestureRecognizer) {
         // HIT TEST : REAL WORLD
         // Get Screen Centre
@@ -111,13 +125,34 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
 
         if let closestResult = arHitTestResults.first {
             // Get Coordinates of HitTest
+            
+            
             let transform : matrix_float4x4 = closestResult.worldTransform
             let worldCoord : SCNVector3 = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
 
+            
+            self.clearView()
+            
             // Create 3D Text
-            let node : SCNNode = createNewBubbleParentNode(latestPrediction)
-            sceneView.scene.rootNode.addChildNode(node)
-            node.position = worldCoord
+            if latestPrediction.count > 0{
+                self.learn_more_button.isHidden = false
+                let node : SCNNode = createNewBubbleParentNode(latestPrediction)
+                sceneView.scene.rootNode.addChildNode(node)
+                
+                
+                node.position = worldCoord
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    
+    func clearView(){
+        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) -> Void in
+            node.removeFromParentNode()
         }
     }
 
@@ -158,6 +193,7 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
         bubbleNodeParent.addChildNode(bubbleNode)
         bubbleNodeParent.addChildNode(sphereNode)
         bubbleNodeParent.constraints = [billboardConstraint]
+        
 
         return bubbleNodeParent
     }
@@ -194,12 +230,10 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
             .map({ "\($0.identifier) \(String(format:"- %.2f", $0.confidence))" })
             .joined(separator: "\n")
 
-
+        
         DispatchQueue.main.async {
             // Print Classifications
-            print(classifications)
-            print("--")
-
+        
             // Display Debug Text on screen
             var debugText:String = ""
             debugText += classifications
@@ -208,9 +242,17 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
             // Store the latest prediction
             var objectName:String = "…"
             objectName = classifications.components(separatedBy: "-")[0]
+            let confidence  = classifications.components(separatedBy: "-")[1].components(separatedBy: "\n")[0]
             objectName = objectName.components(separatedBy: ",")[0]
-            self.latestPrediction = objectName
             
+           
+            
+            if let confidenceValue = Double(confidence.trimmingCharacters(in: CharacterSet.whitespaces)) {
+                    self.latestPrediction = (confidenceValue > 0.6)  ? objectName : ""
+
+            }
+           
+        
         }
     }
     
@@ -220,16 +262,13 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
         let pixbuff : CVPixelBuffer? = (sceneView.session.currentFrame?.capturedImage)
         if pixbuff == nil { return }
         let ciImage = CIImage(cvPixelBuffer: pixbuff!)
-        // Note: Not entirely sure if the ciImage is being interpreted as RGB, but for now it works with the Inception model.
-        // Note2: Also uncertain if the pixelBuffer should be rotated before handing off to Vision (VNImageRequestHandler) - regardless, for now, it still works well with the Inception model.
+      
 
         ///////////////////////////
         // Prepare CoreML/Vision Request
         let imageRequestHandler = VNImageRequestHandler(ciImage: ciImage, options: [:])
-        // let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage!, orientation: myOrientation, options: [:]) // Alternatively; we can convert the above to an RGB CGImage and use that. Also UIInterfaceOrientation can inform orientation values.
-
-        ///////////////////////////
-        // Run Image Request
+  
+ 
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {
@@ -237,6 +276,20 @@ class HomeViewController: UIViewController, ARSCNViewDelegate {
         }
 
     }
+    
+//    private func objectInteracting(with gesture: UIGestureRecognizer, in view: ARSCNView) -> VirtualObject? {
+//        for index in 0..<gesture.numberOfTouches {
+//            let touchLocation = gesture.location(ofTouch: index, in: view)
+//
+//            // Look for an object directly under the `touchLocation`.
+//            if let object = sceneView.virtualObject(at: touchLocation) {
+//                return object
+//            }
+//        }
+//
+//        // As a last resort look for an object under the center of the touches.
+//        return sceneView.virtualObject(at: gesture.center(in: view))
+//    }
 }
 
 extension UIFont {

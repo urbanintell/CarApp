@@ -8,4 +8,6 @@ target 'CarApp' do
   # Pods for CarApp
   pod 'ARCL'
   pod 'CocoaLumberjack/Swift', :git => 'https://github.com/CocoaLumberjack/CocoaLumberjack', :branch => 'master'
+  pod 'Alamofire', '~> 4.5'
+  pod 'SwiftyJSON'
 end
